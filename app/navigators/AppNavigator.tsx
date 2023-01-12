@@ -13,6 +13,7 @@ import {
   useBackButtonHandler,
 } from './NavigationUtilities';
 import {View} from 'react-native';
+import Welcome from '@screens/Welcome/Welcome';
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -38,7 +39,7 @@ const Stack = createNativeStackNavigator<NavigatorParamList>();
 const AppStack = () => {
   const NotAuthenticatedRoute = (
     <Fragment>
-      <Stack.Screen name="WelcomeScreen" component={DummyPage} />
+      <Stack.Screen name="WelcomeScreen" component={Welcome} />
       <Stack.Screen name="LoginScreen" component={DummyPage} />
       <Stack.Screen name="SignUpScreen" component={DummyPage} />
       <Stack.Screen name="OTPScreen" component={DummyPage} />
