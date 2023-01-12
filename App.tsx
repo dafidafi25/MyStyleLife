@@ -23,8 +23,10 @@ export const App: React.FC<IAppProps> = () => {
     isRestored: isNavigationStateRestored,
   } = useNavigationPersistence(storage, NAVIGATION_PERSISTENCE_KEY);
 
+  // Persist Navigation state
   if (!isNavigationStateRestored) return null;
 
+  // persist Redux Store
   let persistor = persistStore(store);
 
   return (
