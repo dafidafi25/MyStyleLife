@@ -8,6 +8,7 @@ interface IButtonProps {
   variant?: 'primary' | 'secondary';
   title: string;
   outline?: boolean;
+  onPress?: () => void;
 }
 
 // Todo Theming Button and setup preset
@@ -16,6 +17,7 @@ export const Button: React.FC<IButtonProps> = ({
   variant = 'primary',
   title,
   outline,
+  onPress,
 }) => {
   let containerStyle: ViewStyle = {alignSelf: 'center'};
 
@@ -39,6 +41,7 @@ export const Button: React.FC<IButtonProps> = ({
 
   return (
     <BtnElements
+      onPress={onPress}
       containerStyle={{...containerStyle}}
       title={title}
       buttonStyle={{
