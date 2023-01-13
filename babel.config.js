@@ -30,7 +30,7 @@ module.exports = {
           '@screens': './app/screens',
           '@styles': './app/styles',
           '@services': './app/services',
-          '@theme': './app/theme',
+          '@themes': './app/themes',
           '@routers': './app/routers',
           '@redux': './app/redux',
           '@assets': './app/assets',

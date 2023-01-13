@@ -12,11 +12,11 @@ export const Welcome: React.FC<IWelcomeProps> = () => {
     <SafeAreaView style={styles.container}>
       <Spacer height={30} />
       <Image source={ThemeImages.Logo} style={styles.logo} />
-      <Button />
+      <Button title="Sign Up" outline />
       <View>
         <Text style={{textAlign: 'center'}}>Already Have an Account</Text>
         <Spacer height={30} />
-        <Button />
+        <Button title="Login Here" />
         <Spacer height={30} />
       </View>
     </SafeAreaView>

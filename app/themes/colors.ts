@@ -15,3 +15,8 @@ export const colors = {
   white: '#ffffff',
   background: '#E5E5E5',
 };
+
+export const ButtonColors = {
+  primary: '#734945',
+  secondary: colors.secondary,
+};
