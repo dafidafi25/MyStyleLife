@@ -1,7 +1,7 @@
 import {type, weight} from '@themes/font';
 import {TextStyle} from 'react-native';
 
-export type TelkomTextType = 'header' | 'normal' | 'bold';
+export type TextType = 'header' | 'normal' | 'bold' | 'label';
 
 export const weightPreset: {[id: string]: TextStyle} = {
   normal: {fontWeight: weight.normal},
@@ -26,13 +26,27 @@ const bold: TextStyle = {
 
 const header: TextStyle = {
   fontWeight: weight.extraBold,
-  fontFamily: type.TTCommonsBold,
-  fontSize: 16,
+  fontFamily: type.SpartanThin,
+  fontSize: 28,
+  lineHeight: 31,
+  textShadowColor: 'rgba(0, 0, 0, 0.75)',
+  textShadowOffset: {height: 4, width: -1},
+  color: '#333333',
+};
+
+const label: TextStyle = {
+  fontWeight: weight.normal,
+  fontFamily: type.SpartanRegular,
+  fontSize: 12,
   lineHeight: 16,
+  textShadowColor: 'rgba(0, 0, 0, 0.75)',
+  textShadowOffset: {height: 4, width: -1},
+  color: '#333333',
 };
 
 export const Preset: {[id: string]: TextStyle} = {
   normal: normal,
   bold: bold,
   header: header,
+  label: label,
 };

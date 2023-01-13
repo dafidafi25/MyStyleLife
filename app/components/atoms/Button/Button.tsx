@@ -1,5 +1,5 @@
 import React from 'react';
-import {Pressable, StyleSheet, TextStyle, ViewStyle} from 'react-native';
+import {StyleSheet, TextStyle, ViewStyle} from 'react-native';
 import {Button as BtnElements} from '@rneui/themed';
 import {ButtonColors, colors} from '@themes/colors';
 
@@ -25,8 +25,6 @@ export const Button: React.FC<IButtonProps> = ({
 
   let textStyle: TextStyle = TextPreset[variant];
 
-  if (fullWidth) containerStyle = {...containerStyle, width: '100%'};
-
   if (outline) {
     textStyle = {color: ButtonColors[variant]};
     containerStyle = {
@@ -38,6 +36,8 @@ export const Button: React.FC<IButtonProps> = ({
   }
 
   containerStyle = {...containerStyle, ...BaseView};
+
+  if (fullWidth) containerStyle = {...containerStyle, width: '100%'};
 
   return (
     <BtnElements
@@ -59,7 +59,7 @@ const BaseView: ViewStyle = {
 };
 
 // TODO Suppose to Set up font familiy, weight, etc
-const BaseText: TextStyle = {};
+// const BaseText: TextStyle = {};
 
 const ButtonPreset = StyleSheet.create({
   primary: {backgroundColor: colors.secondary},
