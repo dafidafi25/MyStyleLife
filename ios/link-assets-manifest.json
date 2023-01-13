@@ -1,0 +1,29 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "app/assets/fonts/Spartan-Regular.ttf",
+      "sha1": "8e81a1d626c414e959de2dc50682b28a6db9f7a4"
+    },
+    {
+      "path": "app/assets/fonts/Spartan-Thin.ttf",
+      "sha1": "4bdddf653382ca0ff4ce96ffaa4b49c50cd39396"
+    },
+    {
+      "path": "app/assets/fonts/TT-Commons-Bold.otf",
+      "sha1": "e32a5618bd2b09d196ad715358a9223538ece4c2"
+    },
+    {
+      "path": "app/assets/fonts/TT-Commons-Medium.otf",
+      "sha1": "367f764d6e65b05f985c904f1c63f6551cf6faf1"
+    },
+    {
+      "path": "app/assets/fonts/TT-Commons-Regular.otf",
+      "sha1": "803b57d242c4e171a88d4d9f6d198d9b625a7779"
+    },
+    {
+      "path": "app/assets/fonts/TT-Commons-Thin.otf",
+      "sha1": "376c5f752e817fd54d6cc8fc1a2c754e545bd22f"
+    }
+  ]
+}

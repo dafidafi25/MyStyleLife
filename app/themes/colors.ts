@@ -13,6 +13,7 @@ export const colors = {
   brown2: '#764848',
 
   white: '#ffffff',
+  black: '#000',
   background: '#E5E5E5',
 };
 

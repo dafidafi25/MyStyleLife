@@ -1,8 +1,9 @@
 import {ThemeImages} from '@assets/images';
-import {Button} from '@components/atoms';
+import {Button, Text} from '@components/atoms';
 import {Spacer} from '@components/atoms/Spacer';
+import {colors} from '@themes/colors';
 import React from 'react';
-import {StyleSheet, Image, Text, View} from 'react-native';
+import {StyleSheet, Image, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 interface IWelcomeProps {}
@@ -12,9 +13,14 @@ export const Welcome: React.FC<IWelcomeProps> = () => {
     <SafeAreaView style={styles.container}>
       <Spacer height={30} />
       <Image source={ThemeImages.Logo} style={styles.logo} />
-      <Button title="Sign Up" outline />
-      <View>
-        <Text style={{textAlign: 'center'}}>Already Have an Account</Text>
+
+      <Button title="Sign Up" variant="primary" outline />
+
+      <View style={{backgroundColor: colors.pink2}}>
+        <Spacer height={30} />
+        <Text textType="bold" style={{textAlign: 'center'}} fontSize={16}>
+          Already Have an Account?
+        </Text>
         <Spacer height={30} />
         <Button title="Login Here" />
         <Spacer height={30} />
@@ -24,7 +30,11 @@ export const Welcome: React.FC<IWelcomeProps> = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {flex: 1, justifyContent: 'space-between'},
+  container: {
+    flex: 1,
+    justifyContent: 'space-between',
+    backgroundColor: colors.white,
+  },
   logo: {alignSelf: 'center'},
 });
 

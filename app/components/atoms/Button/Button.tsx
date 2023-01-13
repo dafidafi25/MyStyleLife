@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, TextStyle, ViewStyle} from 'react-native';
+import {Pressable, StyleSheet, TextStyle, ViewStyle} from 'react-native';
 import {Button as BtnElements} from '@rneui/themed';
-import {colors} from '@themes/colors';
+import {ButtonColors, colors} from '@themes/colors';
 
 interface IButtonProps {
   fullWidth?: boolean;
@@ -23,14 +23,14 @@ export const Button: React.FC<IButtonProps> = ({
 
   let textStyle: TextStyle = TextPreset[variant];
 
-  if (!fullWidth) containerStyle = {...containerStyle, width: '70%'};
+  if (fullWidth) containerStyle = {...containerStyle, width: '100%'};
 
   if (outline) {
-    textStyle = {color: colors[variant]};
+    textStyle = {color: ButtonColors[variant]};
     containerStyle = {
       ...containerStyle,
       borderWidth: 2,
-      borderColor: colors.pink2,
+      borderColor: ButtonColors[variant],
     };
     buttonStyle = {...buttonStyle, backgroundColor: colors.white};
   }
@@ -43,7 +43,7 @@ export const Button: React.FC<IButtonProps> = ({
       title={title}
       buttonStyle={{
         ...buttonStyle,
-        paddingVertical: 15,
+        paddingVertical: 10,
       }}
       titleStyle={textStyle}
     />
@@ -52,6 +52,7 @@ export const Button: React.FC<IButtonProps> = ({
 
 const BaseView: ViewStyle = {
   borderRadius: 5,
+  width: '70%',
 };
 
 // TODO Suppose to Set up font familiy, weight, etc
@@ -64,7 +65,7 @@ const ButtonPreset = StyleSheet.create({
 
 const TextPreset = StyleSheet.create({
   primary: {color: colors.white},
-  secondary: {color: colors.white},
+  secondary: {color: colors.black},
 });
 
 export default Button;
