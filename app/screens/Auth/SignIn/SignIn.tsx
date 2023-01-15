@@ -5,6 +5,8 @@ import {
   Text,
   InputText,
 } from '@components/atoms';
+import {BaseNavigationParams} from '@navigators/NavigatorParams';
+import {useNavigation} from '@react-navigation/native';
 import {colors} from '@themes/colors';
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
@@ -13,6 +15,8 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 interface ISignInProps {}
 
 export const SignIn: React.FC<ISignInProps> = () => {
+  const navigation = useNavigation<BaseNavigationParams>();
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={{flex: 3, justifyContent: 'center'}}>
@@ -32,7 +36,8 @@ export const SignIn: React.FC<ISignInProps> = () => {
             alignItems: 'center',
           }}>
           <InputCheckBox label="Remember Me?" />
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('ForgotPasswordScreen')}>
             <Text textType="label">Forgot Password?</Text>
           </TouchableOpacity>
         </View>

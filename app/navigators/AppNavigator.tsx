@@ -15,6 +15,8 @@ import {
 import {View} from 'react-native';
 import Welcome from '@screens/Welcome/Welcome';
 import SignIn from '@screens/Auth/SignIn/SignIn';
+import SignUp from '@screens/Auth/SignUp/SignUp';
+import ForgotPassword from '@screens/Auth/ForgotPassword/ForgotPassword';
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -27,6 +29,8 @@ export type NavigatorParamList = {
   WelcomeScreen: undefined;
   LoginScreen: undefined;
   SignUpScreen: undefined;
+  ForgotPasswordScreen: undefined;
+
   OTPScreen: undefined;
   OnBoardingScreen: undefined;
 
@@ -42,7 +46,8 @@ const AppStack = () => {
     <Fragment>
       <Stack.Screen name="WelcomeScreen" component={Welcome} />
       <Stack.Screen name="LoginScreen" component={SignIn} />
-      <Stack.Screen name="SignUpScreen" component={DummyPage} />
+      <Stack.Screen name="SignUpScreen" component={SignUp} />
+      <Stack.Screen name="ForgotPasswordScreen" component={ForgotPassword} />
       <Stack.Screen name="OTPScreen" component={DummyPage} />
       <Stack.Screen name="OnBoardingScreen" component={DummyPage} />
     </Fragment>
