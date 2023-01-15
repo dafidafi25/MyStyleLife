@@ -1,4 +1,6 @@
 import {Button, Spacer, Text, InputText} from '@components/atoms';
+import {BaseNavigationParams} from '@navigators/NavigatorParams';
+import {useNavigation} from '@react-navigation/native';
 import {colors} from '@themes/colors';
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
@@ -7,6 +9,8 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 interface ISignUpProps {}
 
 export const SignUp: React.FC<ISignUpProps> = () => {
+  const navigation = useNavigation<BaseNavigationParams>();
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={{flex: 3, justifyContent: 'center'}}>
@@ -24,7 +28,12 @@ export const SignUp: React.FC<ISignUpProps> = () => {
         <InputText label={'Confirm Password'} obscure />
         <Spacer height={18} />
 
-        <Button title="Sign Up" fullWidth variant="secondary" />
+        <Button
+          title="Sign Up"
+          fullWidth
+          variant="secondary"
+          onPress={() => navigation.navigate('SignUpDetailScreen')}
+        />
       </View>
     </SafeAreaView>
   );

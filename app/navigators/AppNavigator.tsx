@@ -17,6 +17,7 @@ import Welcome from '@screens/Welcome/Welcome';
 import SignIn from '@screens/Auth/SignIn/SignIn';
 import SignUp from '@screens/Auth/SignUp/SignUp';
 import ForgotPassword from '@screens/Auth/ForgotPassword/ForgotPassword';
+import SignUpDetail from '@screens/Auth/SignUp/SignUpDetail';
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -29,6 +30,7 @@ export type NavigatorParamList = {
   WelcomeScreen: undefined;
   LoginScreen: undefined;
   SignUpScreen: undefined;
+  SignUpDetailScreen: undefined;
   ForgotPasswordScreen: undefined;
 
   OTPScreen: undefined;
@@ -47,6 +49,7 @@ const AppStack = () => {
       <Stack.Screen name="WelcomeScreen" component={Welcome} />
       <Stack.Screen name="LoginScreen" component={SignIn} />
       <Stack.Screen name="SignUpScreen" component={SignUp} />
+      <Stack.Screen name="SignUpDetailScreen" component={SignUpDetail} />
       <Stack.Screen name="ForgotPasswordScreen" component={ForgotPassword} />
       <Stack.Screen name="OTPScreen" component={DummyPage} />
       <Stack.Screen name="OnBoardingScreen" component={DummyPage} />
