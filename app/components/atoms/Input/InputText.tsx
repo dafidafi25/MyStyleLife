@@ -1,5 +1,6 @@
 import {colors} from '@themes/colors';
 import React, {useState} from 'react';
+import {View} from 'react-native';
 import {TextInput} from 'react-native-paper';
 
 interface IInputTextProps {
@@ -18,30 +19,32 @@ export const InputText: React.FC<IInputTextProps> = ({
   const [obscureProps, setObscureProps] = useState(obscure);
 
   return (
-    <TextInput
-      label={label}
-      placeholder={placeholder}
-      mode={mode}
-      outlineColor={colors.Gray}
-      activeOutlineColor={colors.Gray}
-      autoCapitalize="none"
-      autoComplete="off"
-      secureTextEntry={obscureProps}
-      right={
-        obscure &&
-        (obscureProps ? (
-          <TextInput.Icon
-            icon="eye-off"
-            onPress={() => setObscureProps(oldVal => !oldVal)}
-          />
-        ) : (
-          <TextInput.Icon
-            icon="eye"
-            onPress={() => setObscureProps(oldVal => !oldVal)}
-          />
-        ))
-      }
-    />
+    <View style={{backgroundColor: colors.white}}>
+      <TextInput
+        label={label}
+        placeholder={placeholder}
+        mode={mode}
+        outlineColor={colors.Gray}
+        activeOutlineColor={colors.Gray}
+        autoCapitalize="none"
+        autoComplete="off"
+        secureTextEntry={obscureProps}
+        right={
+          obscure &&
+          (obscureProps ? (
+            <TextInput.Icon
+              icon="eye-off"
+              onPress={() => setObscureProps(oldVal => !oldVal)}
+            />
+          ) : (
+            <TextInput.Icon
+              icon="eye"
+              onPress={() => setObscureProps(oldVal => !oldVal)}
+            />
+          ))
+        }
+      />
+    </View>
   );
 };
 

@@ -1,3 +1,4 @@
+import {colors} from '@themes/colors';
 import {type, weight} from '@themes/font';
 import {TextStyle} from 'react-native';
 
@@ -37,11 +38,11 @@ const header: TextStyle = {
 const label: TextStyle = {
   fontWeight: weight.normal,
   fontFamily: type.SpartanRegular,
-  fontSize: 12,
-  lineHeight: 16,
+  fontSize: 14,
+  lineHeight: 18,
   textShadowColor: 'rgba(0, 0, 0, 0.75)',
   textShadowOffset: {height: 4, width: -1},
-  color: '#333333',
+  color: colors.black,
 };
 
 export const Preset: {[id: string]: TextStyle} = {

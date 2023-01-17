@@ -1,6 +1,6 @@
 import {colors} from '@themes/colors';
 import React from 'react';
-import {Pressable} from 'react-native';
+import {Pressable, View} from 'react-native';
 import {Checkbox} from 'react-native-paper';
 import {Spacer} from '../Spacer';
 import Text from '../Text/Text';
@@ -31,7 +31,9 @@ export const InputCheckBox: React.FC<IInputCheckBoxProps> = ({
       />
 
       <Spacer />
-      <Text textType="label">{label}</Text>
+      <View style={{flexDirection: 'row', width: '90%'}}>
+        <Text textType="label">{label}</Text>
+      </View>
     </Pressable>
   );
 };
