@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, TextStyle, ViewStyle} from 'react-native';
 import {Button as BtnElements} from '@rneui/themed';
 import {ButtonColors, colors} from '@themes/colors';
+import {type} from '@themes/font';
 
 interface IButtonProps {
   fullWidth?: boolean;
@@ -48,7 +49,7 @@ export const Button: React.FC<IButtonProps> = ({
         ...buttonStyle,
         paddingVertical: 10,
       }}
-      titleStyle={textStyle}
+      titleStyle={{...textStyle, fontFamily: type.SpartanRegular}}
     />
   );
 };

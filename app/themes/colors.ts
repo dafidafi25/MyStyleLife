@@ -15,6 +15,7 @@ export const colors = {
   white: '#ffffff',
   black: '#000',
   background: '#E5E5E5',
+  gray5: '#E0E0E0',
 };
 
 export const ButtonColors = {

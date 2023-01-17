@@ -18,6 +18,7 @@ import SignIn from '@screens/Auth/SignIn/SignIn';
 import SignUp from '@screens/Auth/SignUp/SignUp';
 import ForgotPassword from '@screens/Auth/ForgotPassword/ForgotPassword';
 import SignUpDetail from '@screens/Auth/SignUp/SignUpDetail';
+import OTPScreen from '@screens/Auth/OTP/OTPScreen';
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -51,7 +52,7 @@ const AppStack = () => {
       <Stack.Screen name="SignUpScreen" component={SignUp} />
       <Stack.Screen name="SignUpDetailScreen" component={SignUpDetail} />
       <Stack.Screen name="ForgotPasswordScreen" component={ForgotPassword} />
-      <Stack.Screen name="OTPScreen" component={DummyPage} />
+      <Stack.Screen name="OTPScreen" component={OTPScreen} />
       <Stack.Screen name="OnBoardingScreen" component={DummyPage} />
     </Fragment>
   );

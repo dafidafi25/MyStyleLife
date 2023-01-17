@@ -10,6 +10,8 @@ import {
 } from '@components/atoms';
 import InputDate from '@components/atoms/Input/InputDate';
 import MySLifeSelectInput from '@components/atoms/MySLifeSelectInput';
+import {BaseNavigationParams} from '@navigators/NavigatorParams';
+import {useNavigation} from '@react-navigation/native';
 import {colors} from '@themes/colors';
 import React from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
@@ -18,6 +20,8 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 interface ISignUpDetailProps {}
 
 export const SignUpDetail: React.FC<ISignUpDetailProps> = () => {
+  const navigation = useNavigation<BaseNavigationParams>();
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={{flex: 1}}>
@@ -57,7 +61,12 @@ export const SignUpDetail: React.FC<ISignUpDetailProps> = () => {
         </View>
       </ScrollView>
       <View style={styles.buttonWrapper}>
-        <Button title="Sign Up" fullWidth variant="secondary" />
+        <Button
+          title="Sign Up"
+          fullWidth
+          variant="secondary"
+          onPress={() => navigation.navigate('OTPScreen')}
+        />
       </View>
     </SafeAreaView>
   );

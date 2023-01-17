@@ -6,7 +6,6 @@ import InterestChip from '../InterestChip';
 import {Spacer} from '../Spacer';
 import Text from '../Text/Text';
 import {Overlay} from '@rneui/themed';
-import InputSelectBox from './InputSelectBox';
 import InputCheckBox from './InputCheckBox';
 
 interface IInputMultiSelectProps {
