@@ -1,6 +1,6 @@
 import ArrowRightIcon from '@assets/icons/ArrowRightIcon';
 import CrossIcon from '@assets/icons/CrossIcon';
-import {Text} from '@components/atoms';
+import {Spacer, Text} from '@components/atoms';
 import {useBaseNavigation} from '@hooks/useBaseNavigation';
 import {colors} from '@themes/colors';
 import React from 'react';
@@ -15,15 +15,18 @@ export const NavigationHeader: React.FC<INavigationHeaderProps> = ({title}) => {
   const navigation = useBaseNavigation();
 
   return (
-    <SafeAreaView style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <CrossIcon color={colors.black} />
-      </TouchableOpacity>
-      <Text textType="header">{title}</Text>
-      <TouchableOpacity>
-        <ArrowRightIcon color={colors.black} />
-      </TouchableOpacity>
-    </SafeAreaView>
+    <>
+      <Spacer height={10} />
+      <SafeAreaView style={styles.container}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <CrossIcon color={colors.black} />
+        </TouchableOpacity>
+        <Text textType="header">{title}</Text>
+        <TouchableOpacity>
+          <ArrowRightIcon color={colors.black} />
+        </TouchableOpacity>
+      </SafeAreaView>
+    </>
   );
 };
 
