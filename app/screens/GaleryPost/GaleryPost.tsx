@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   Pressable,
 } from 'react-native';
-import {ThemeImages} from '@assets/images';
 import SelectImageIcon from '@assets/icons/SelectImageIcon';
 import {colors} from '@themes/colors';
 import CameraImageIcon from '@assets/icons/CameraImageIcon';
@@ -26,6 +25,7 @@ interface IGaleryPostProps {}
 export const GaleryPost: React.FC<IGaleryPostProps> = () => {
   const [imageList, setImageList] = React.useState<Array<PhotoIdentifier>>([]);
   const [pageCursor, setPageCursor] = React.useState<string>('');
+  const [selectedImage, setSelectedImage] = React.useState<string>('');
 
   useEffect(() => {
     const requestCameraPermission = async () => {
@@ -65,6 +65,9 @@ export const GaleryPost: React.FC<IGaleryPostProps> = () => {
       });
       setPageCursor(images.page_info?.end_cursor);
       setImageList(oldPage => [...oldPage, ...images.edges]);
+      if (selectedImage === '') {
+        setSelectedImage(images.edges[0].node.image.uri);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -77,8 +80,8 @@ export const GaleryPost: React.FC<IGaleryPostProps> = () => {
       <NavigationHeader title="New Post" />
       <Spacer height={25} />
       <Image
-        source={ThemeImages.DummyPostImage}
-        style={{width: '100%'}}
+        source={{uri: selectedImage}}
+        style={{width: '100%', height: 250}}
         resizeMode="contain"
       />
       <Spacer height={14} />
@@ -100,7 +103,10 @@ export const GaleryPost: React.FC<IGaleryPostProps> = () => {
         itemDimension={82}
         data={imageList}
         renderItem={({item}) => (
-          <Pressable key={item?.node?.image?.uri} style={styles.galery}>
+          <Pressable
+            key={item?.node?.image?.uri}
+            style={styles.galery}
+            onPress={() => setSelectedImage(item.node.image.uri)}>
             <Image
               source={{uri: item.node.image.uri}}
               key={item.node.image.uri}
