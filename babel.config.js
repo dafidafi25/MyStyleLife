@@ -2,7 +2,6 @@ module.exports = {
   presets: ['module:metro-react-native-babel-preset'],
   env: {
     production: {
-      // To Make Smaller bundler of react native paper
       plugins: ['react-native-paper/babel'],
     },
   },
@@ -33,7 +32,7 @@ module.exports = {
           '@screens': './app/screens',
           '@styles': './app/styles',
           '@services': './app/services',
-          '@theme': './app/theme',
+          '@themes': './app/themes',
           '@routers': './app/routers',
           '@redux': './app/redux',
           '@assets': './app/assets',

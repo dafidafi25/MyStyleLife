@@ -13,5 +13,12 @@ export const colors = {
   brown2: '#764848',
 
   white: '#ffffff',
+  black: '#000',
   background: '#E5E5E5',
+  gray5: '#E0E0E0',
+};
+
+export const ButtonColors = {
+  primary: '#734945',
+  secondary: colors.secondary,
 };

@@ -13,6 +13,14 @@ import {
   useBackButtonHandler,
 } from './NavigationUtilities';
 import {View} from 'react-native';
+import Welcome from '@screens/Welcome/Welcome';
+import SignIn from '@screens/Auth/SignIn/SignIn';
+import SignUp from '@screens/Auth/SignUp/SignUp';
+import ForgotPassword from '@screens/Auth/ForgotPassword/ForgotPassword';
+import SignUpDetail from '@screens/Auth/SignUp/SignUpDetail';
+import OTPScreen from '@screens/Auth/OTP/OTPScreen';
+import OnBoarding from '@screens/OnBoarding/OnBoarding';
+import Home from '@screens/Home/Home';
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -25,11 +33,17 @@ export type NavigatorParamList = {
   WelcomeScreen: undefined;
   LoginScreen: undefined;
   SignUpScreen: undefined;
+  SignUpDetailScreen: undefined;
+  ForgotPasswordScreen: undefined;
+
   OTPScreen: undefined;
   OnBoardingScreen: undefined;
 
   // Authenticated Screen
   Home: undefined;
+
+  GaleryPost: undefined;
+  Feed: undefined;
 };
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
@@ -38,11 +52,14 @@ const Stack = createNativeStackNavigator<NavigatorParamList>();
 const AppStack = () => {
   const NotAuthenticatedRoute = (
     <Fragment>
-      <Stack.Screen name="WelcomeScreen" component={DummyPage} />
-      <Stack.Screen name="LoginScreen" component={DummyPage} />
-      <Stack.Screen name="SignUpScreen" component={DummyPage} />
-      <Stack.Screen name="OTPScreen" component={DummyPage} />
-      <Stack.Screen name="OnBoardingScreen" component={DummyPage} />
+      <Stack.Screen name="WelcomeScreen" component={Welcome} />
+      <Stack.Screen name="LoginScreen" component={SignIn} />
+      <Stack.Screen name="SignUpScreen" component={SignUp} />
+      <Stack.Screen name="SignUpDetailScreen" component={SignUpDetail} />
+      <Stack.Screen name="ForgotPasswordScreen" component={ForgotPassword} />
+      <Stack.Screen name="OTPScreen" component={OTPScreen} />
+      <Stack.Screen name="OnBoardingScreen" component={OnBoarding} />
+      <Stack.Screen name="Home" component={Home} />
     </Fragment>
   );
   //   const AuthenticatedRoute = <Fragment></Fragment>;
@@ -115,7 +132,7 @@ export const AppNavigator = (props: NavigationProps) => {
 
 AppNavigator.displayName = 'AppNavigator';
 
-function DummyPage() {
+export function DummyPage() {
   return <View />;
 }
 
@@ -128,5 +145,5 @@ function DummyPage() {
  *
  * `canExit` is used in ./app/app.tsx in the `useBackButtonHandler` hook.
  */
-const exitRoutes = ['Home'];
+const exitRoutes = ['WelcomeScreen'];
 export const canExit = (routeName: string) => exitRoutes.includes(routeName);

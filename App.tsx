@@ -6,6 +6,7 @@ import {
   initialWindowMetrics,
   SafeAreaProvider,
 } from 'react-native-safe-area-context';
+import {Provider as PaperProvider} from 'react-native-paper';
 
 import {store} from '@store/store';
 import {Provider} from 'react-redux';
@@ -33,10 +34,12 @@ export const App: React.FC<IAppProps> = () => {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-          <AppNavigator
-            initialState={initialNavigationState}
-            onStateChange={onNavigationStateChange}
-          />
+          <PaperProvider>
+            <AppNavigator
+              initialState={initialNavigationState}
+              onStateChange={onNavigationStateChange}
+            />
+          </PaperProvider>
         </SafeAreaProvider>
       </PersistGate>
     </Provider>
