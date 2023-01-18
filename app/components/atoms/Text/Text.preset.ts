@@ -2,7 +2,7 @@ import {colors} from '@themes/colors';
 import {type, weight} from '@themes/font';
 import {TextStyle} from 'react-native';
 
-export type TextType = 'header' | 'normal' | 'bold' | 'label';
+export type TextType = 'header' | 'normal' | 'bold' | 'label' | 'AuthHeader';
 
 export const weightPreset: {[id: string]: TextStyle} = {
   normal: {fontWeight: weight.normal},
@@ -35,6 +35,16 @@ const header: TextStyle = {
   color: '#333333',
 };
 
+const AuthHeader: TextStyle = {
+  fontWeight: weight.bold,
+  fontFamily: type.SpartanBold,
+  fontSize: 28,
+  lineHeight: 32,
+  textShadowColor: 'rgba(0, 0, 0, 0.75)',
+  textShadowOffset: {height: 4, width: -1},
+  color: colors.black,
+};
+
 const label: TextStyle = {
   fontWeight: weight.normal,
   fontFamily: type.SpartanRegular,
@@ -50,4 +60,5 @@ export const Preset: {[id: string]: TextStyle} = {
   bold: bold,
   header: header,
   label: label,
+  AuthHeader: AuthHeader,
 };

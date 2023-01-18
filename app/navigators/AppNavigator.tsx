@@ -21,6 +21,8 @@ import SignUpDetail from '@screens/Auth/SignUp/SignUpDetail';
 import OTPScreen from '@screens/Auth/OTP/OTPScreen';
 import OnBoarding from '@screens/OnBoarding/OnBoarding';
 import Home from '@screens/Home/Home';
+import OnBoardingSignIn from '@screens/OnBoarding/OnBoardingSignIn';
+import {colors} from '@themes/colors';
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -38,6 +40,7 @@ export type NavigatorParamList = {
 
   OTPScreen: undefined;
   OnBoardingScreen: undefined;
+  OnBoardingScreenSignin: undefined;
 
   // Authenticated Screen
   Home: undefined;
@@ -59,6 +62,10 @@ const AppStack = () => {
       <Stack.Screen name="ForgotPasswordScreen" component={ForgotPassword} />
       <Stack.Screen name="OTPScreen" component={OTPScreen} />
       <Stack.Screen name="OnBoardingScreen" component={OnBoarding} />
+      <Stack.Screen
+        name="OnBoardingScreenSignin"
+        component={OnBoardingSignIn}
+      />
       <Stack.Screen name="Home" component={Home} />
     </Fragment>
   );
@@ -91,15 +98,16 @@ export const AppNavigator = (props: NavigationProps) => {
    * To listen into current route screen so in here
    * we can change status bar based on screen name
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentRoute, setCurrentRoute] = React.useState('');
   useBackButtonHandler(canExit);
+  console.log(currentRoute);
 
   // Get current route name every time it changes
   useEffect(() => {
     // Get current route name, and set it to state
     setCurrentRoute(getActiveRouteName(navigationRef.getRootState()));
     // Check every time the route changes
+
     const unsubscribe = navigationRef.current?.addListener('state', e => {
       const routeName = e.data.state.routes[e.data.state.index].name;
       setCurrentRoute(routeName);
@@ -107,24 +115,20 @@ export const AppNavigator = (props: NavigationProps) => {
     return unsubscribe;
   }, []);
 
-  /**
-   * Todo Create Cross Platform Status Bar Component on IOS and Android
-   */
   return (
     <NavigationContainer
       ref={navigationRef}
       {...props} // Add this to persist screen on DEVre
     >
-      <StatusBar backgroundColor={'transparent'} barStyle={'dark-content'} />
-      {/* <CrossPlatformStatusBar
-        isHidden={
-          currentRoute === 'Login' ||
-          currentRoute === 'findAlumni' ||
-          currentRoute === 'Register'
+      <StatusBar
+        backgroundColor={
+          currentRoute === 'OnBoardingScreenSignin' ||
+          currentRoute === 'OnBoardingScreen'
+            ? colors.pink1
+            : 'white'
         }
-        backgroundColor={'white'}
-        baryStyle={currentRoute === 'Login' ? 'light-content' : 'dark-content'}
-      /> */}
+        barStyle={'dark-content'}
+      />
 
       <AppStack />
     </NavigationContainer>

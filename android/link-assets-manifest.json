@@ -2,6 +2,10 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "app/assets/fonts/Spartan-Bold.ttf",
+      "sha1": "76c4bebb34c5a05d78eaf1e865d8e4a1b2a82bf4"
+    },
+    {
       "path": "app/assets/fonts/Spartan-Regular.ttf",
       "sha1": "8e81a1d626c414e959de2dc50682b28a6db9f7a4"
     },

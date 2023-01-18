@@ -1,15 +1,25 @@
 import {Button, Spacer, Text} from '@components/atoms';
 import {OTPField} from '@components/atoms/Input/OTPField';
+import {useAppSelector} from '@hooks/useAppSelector';
 import {useBaseNavigation} from '@hooks/useBaseNavigation';
+import {mockAuthLoading} from '@store/features/auth/Auth.action';
 import {colors} from '@themes/colors';
 import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {useDispatch} from 'react-redux';
 
 interface IOTPScreenProps {}
 
 export const OTPScreen: React.FC<IOTPScreenProps> = () => {
   const navigation = useBaseNavigation();
+  const isLoading = useAppSelector(state => state.Loading.isLoading);
+  const dispatch = useDispatch();
+
+  const onSend = async () => {
+    await dispatch(mockAuthLoading() as any);
+    navigation.navigate('OnBoardingScreen');
+  };
 
   const [otpInputValue, setOtpInputValue] = useState('');
   const [otpError, setOtpError] = useState<string>('');
@@ -17,7 +27,7 @@ export const OTPScreen: React.FC<IOTPScreenProps> = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={{justifyContent: 'center'}}>
-        <Text style={{textAlign: 'center'}} textType="header">
+        <Text style={{textAlign: 'center'}} textType="AuthHeader">
           Verification
         </Text>
         <Spacer height={50} />
@@ -57,10 +67,11 @@ export const OTPScreen: React.FC<IOTPScreenProps> = () => {
         </Text>
         <Spacer height={30} />
         <Button
-          title="Validate"
+          title={isLoading ? 'Validating' : 'Validate'}
           fullWidth
+          disabled={isLoading}
           variant="secondary"
-          onPress={() => navigation.navigate('OnBoardingScreen')}
+          onPress={onSend}
         />
       </View>
     </SafeAreaView>

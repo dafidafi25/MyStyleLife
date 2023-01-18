@@ -10,22 +10,32 @@ import {
 } from '@components/atoms';
 import InputDate from '@components/atoms/Input/InputDate';
 import MySLifeSelectInput from '@components/atoms/MySLifeSelectInput';
+import {useAppSelector} from '@hooks/useAppSelector';
 import {useBaseNavigation} from '@hooks/useBaseNavigation';
+import {mockAuthLoading} from '@store/features/auth/Auth.action';
 import {colors} from '@themes/colors';
 import React from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {useDispatch} from 'react-redux';
 
 interface ISignUpDetailProps {}
 
 export const SignUpDetail: React.FC<ISignUpDetailProps> = () => {
   const navigation = useBaseNavigation();
+  const isLoading = useAppSelector(state => state.Loading.isLoading);
+  const dispatch = useDispatch();
+
+  const onSend = async () => {
+    await dispatch(mockAuthLoading() as any);
+    navigation.navigate('OTPScreen');
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={{flex: 1}}>
         <View style={{justifyContent: 'center', paddingTop: 32}}>
-          <Text style={{textAlign: 'center'}} textType="header">
+          <Text style={{textAlign: 'center'}} textType="AuthHeader">
             {'Please Complete\nyour details'}
           </Text>
         </View>
@@ -61,10 +71,11 @@ export const SignUpDetail: React.FC<ISignUpDetailProps> = () => {
       </ScrollView>
       <View style={styles.buttonWrapper}>
         <Button
-          title="Sign Up"
+          title={isLoading ? 'Submitting' : 'Sign Up'}
           fullWidth
           variant="secondary"
-          onPress={() => navigation.navigate('OTPScreen')}
+          onPress={onSend}
+          disabled={isLoading}
         />
       </View>
     </SafeAreaView>

@@ -10,6 +10,7 @@ interface IButtonProps {
   title: string;
   outline?: boolean;
   onPress?: () => void;
+  disabled?: boolean;
 }
 
 // Todo Theming Button and setup preset
@@ -19,6 +20,7 @@ export const Button: React.FC<IButtonProps> = ({
   title,
   outline,
   onPress,
+  disabled,
 }) => {
   let containerStyle: ViewStyle = {alignSelf: 'center'};
 
@@ -49,6 +51,7 @@ export const Button: React.FC<IButtonProps> = ({
         ...buttonStyle,
         paddingVertical: 10,
       }}
+      disabled={disabled}
       titleStyle={{...textStyle, fontFamily: type.SpartanRegular}}
     />
   );

@@ -4,9 +4,11 @@ import {persistReducer} from 'redux-persist';
 import thunk from 'redux-thunk';
 
 import authReducer from './features/auth/Auth';
+import LoadingReducer from './features/loading/Loading';
 
 const reducers = combineReducers({
   auth: authReducer,
+  Loading: LoadingReducer,
 });
 
 /*

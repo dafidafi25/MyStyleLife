@@ -20,6 +20,7 @@ const weight = {
 };
 
 const type = {
+  SpartanBold: 'Spartan-Bold',
   SpartanRegular: 'Spartan-Regular',
   SpartanThin: 'Spartan-Thin',
   TTCommonsBold: 'TT-Commons-Bold',

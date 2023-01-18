@@ -1,12 +1,15 @@
 import {Spacer, Text} from '@components/atoms';
+import {useBaseNavigation} from '@hooks/useBaseNavigation';
 import {colors} from '@themes/colors';
 import {type} from '@themes/font';
 import React from 'react';
-import {StyleSheet, SafeAreaView, View} from 'react-native';
+import {StyleSheet, SafeAreaView, View, TouchableOpacity} from 'react-native';
 
 interface IOnBoardingSignInProps {}
 
 export const OnBoardingSignIn: React.FC<IOnBoardingSignInProps> = () => {
+  const navigation = useBaseNavigation();
+
   return (
     <SafeAreaView style={styles.container}>
       <View
@@ -46,16 +49,18 @@ export const OnBoardingSignIn: React.FC<IOnBoardingSignInProps> = () => {
         </View>
         <Spacer />
       </View>
-      <View style={{alignItems: 'center'}}>
+      <TouchableOpacity
+        style={{alignItems: 'center'}}
+        onPress={() => navigation.navigate('Home')}>
         <Text
           fontSize={20}
           fontLineHeight={22}
           fontColors={colors.black}
           style={{fontFamily: type.SpartanRegular}}>
-          Skip
+          Next
         </Text>
         <Spacer height={30} />
-      </View>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };

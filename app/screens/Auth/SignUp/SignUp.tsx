@@ -1,20 +1,29 @@
 import {Button, Spacer, Text, InputText} from '@components/atoms';
-import {BaseNavigationParams} from '@navigators/NavigatorParams';
-import {useNavigation} from '@react-navigation/native';
+import {useAppSelector} from '@hooks/useAppSelector';
+import {useBaseNavigation} from '@hooks/useBaseNavigation';
+import {mockAuthLoading} from '@store/features/auth/Auth.action';
 import {colors} from '@themes/colors';
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {useDispatch} from 'react-redux';
 
 interface ISignUpProps {}
 
 export const SignUp: React.FC<ISignUpProps> = () => {
-  const navigation = useNavigation<BaseNavigationParams>();
+  const navigation = useBaseNavigation();
+  const isLoading = useAppSelector(state => state.Loading.isLoading);
+  const dispatch = useDispatch();
+
+  const onSend = async () => {
+    await dispatch(mockAuthLoading() as any);
+    navigation.navigate('SignUpDetailScreen');
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={{flex: 3, justifyContent: 'center'}}>
-        <Text style={{textAlign: 'center'}} textType="header">
+        <Text style={{textAlign: 'center'}} textType="AuthHeader">
           Sign Up
         </Text>
       </View>
@@ -29,10 +38,11 @@ export const SignUp: React.FC<ISignUpProps> = () => {
         <Spacer height={18} />
 
         <Button
-          title="Sign Up"
+          title={isLoading ? 'Submitting' : 'Sign Up'}
           fullWidth
+          disabled={isLoading}
           variant="secondary"
-          onPress={() => navigation.navigate('SignUpDetailScreen')}
+          onPress={onSend}
         />
       </View>
     </SafeAreaView>

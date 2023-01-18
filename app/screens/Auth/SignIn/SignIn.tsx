@@ -5,22 +5,31 @@ import {
   Text,
   InputText,
 } from '@components/atoms';
-import {BaseNavigationParams} from '@navigators/NavigatorParams';
-import {useNavigation} from '@react-navigation/native';
+import {useAppSelector} from '@hooks/useAppSelector';
+import {useBaseNavigation} from '@hooks/useBaseNavigation';
+import {mockAuthLoading} from '@store/features/auth/Auth.action';
 import {colors} from '@themes/colors';
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {useDispatch} from 'react-redux';
 
 interface ISignInProps {}
 
 export const SignIn: React.FC<ISignInProps> = () => {
-  const navigation = useNavigation<BaseNavigationParams>();
+  const isLoading = useAppSelector(state => state.Loading.isLoading);
+  const navigation = useBaseNavigation();
+  const dispatch = useDispatch();
+
+  const onSignIn = async () => {
+    await dispatch(mockAuthLoading() as any);
+    navigation.navigate('OnBoardingScreenSignin');
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={{flex: 3, justifyContent: 'center'}}>
-        <Text style={{textAlign: 'center'}} textType="header">
+        <Text style={{textAlign: 'center'}} textType="AuthHeader">
           Sign In
         </Text>
       </View>
@@ -42,7 +51,13 @@ export const SignIn: React.FC<ISignInProps> = () => {
           </TouchableOpacity>
         </View>
         <Spacer height={4} />
-        <Button title="Sign In" fullWidth variant="secondary" />
+        <Button
+          title={isLoading ? 'Submitting' : 'Sign In'}
+          fullWidth
+          variant="secondary"
+          disabled={isLoading}
+          onPress={onSignIn}
+        />
       </View>
     </SafeAreaView>
   );
