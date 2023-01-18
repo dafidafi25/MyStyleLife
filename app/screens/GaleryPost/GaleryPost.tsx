@@ -1,46 +1,77 @@
 import {Spacer} from '@components/atoms';
 import NavigationHeader from '@components/molecules/NavigationHeader';
-import React from 'react';
-import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import React, {useEffect} from 'react';
+import {
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Pressable,
+} from 'react-native';
 import {ThemeImages} from '@assets/images';
 import SelectImageIcon from '@assets/icons/SelectImageIcon';
 import {colors} from '@themes/colors';
 import CameraImageIcon from '@assets/icons/CameraImageIcon';
 import TextTIcon from '@assets/icons/TextTIcon';
-// import RNFS
-import * as RNFS from 'react-native-fs';
-import RNFetchBlob from 'rn-fetch-blob';
+import {PermissionsAndroid} from 'react-native';
+import {FlatGrid} from 'react-native-super-grid';
+
+import {
+  CameraRoll,
+  PhotoIdentifier,
+} from '@react-native-camera-roll/camera-roll';
 
 interface IGaleryPostProps {}
 
 export const GaleryPost: React.FC<IGaleryPostProps> = () => {
-  // create function to get images uri from gallery
-  const getImages = async () => {
-    RNFetchBlob.fs
-      .ls('/storage/emulated/0/DCIM/Camera/Raw')
-      .then(files => {
-        console.log(files);
-      })
-      .catch(error => console.log(error));
-    RNFS.readDir('/storage/emulated/0/DCIM/Camera').then(async result => {
-      for (const file of result) {
-        // console.log(file.path);
-        // console.log(await RNFS.stat(file.path));
-        // if (file.isDirectory()) continue;
-        // console.log('\n\n GALERY \n\n');
-        // console.log('GOT FILE', file);
-        // // get the file name
-        // console.log('filename', file.name);
-        // // get the file path
-        // console.log('path', file.path);
-        // console.log('size', file.size);
-        // console.log('isFile', file.isFile());
-        // console.log('isDirectory', file.isDirectory());
+  const [imageList, setImageList] = React.useState<Array<PhotoIdentifier>>([]);
+  const [pageCursor, setPageCursor] = React.useState<string>('');
+
+  useEffect(() => {
+    const requestCameraPermission = async () => {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+          {
+            title: 'My S Life APP Media Permission',
+            message:
+              'Cool Photo App needs access to your Media ' +
+              'so you can take awesome pictures.',
+            buttonNeutral: 'Ask Me Later',
+            buttonNegative: 'Cancel',
+            buttonPositive: 'OK',
+          },
+        );
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          getImages();
+          console.log('You can access camera');
+        } else {
+          console.log('Media permission denied');
+        }
+      } catch (err) {
+        console.warn(err);
       }
-    });
+    };
+    requestCameraPermission();
+  }, []);
+
+  const getImages = async (nextCursor?: string) => {
+    try {
+      const images = await CameraRoll.getPhotos({
+        first: 50,
+        after: nextCursor ? nextCursor : '',
+        assetType: 'Photos',
+        include: ['filename', 'imageSize'],
+      });
+      setPageCursor(images.page_info?.end_cursor);
+      setImageList(oldPage => [...oldPage, ...images.edges]);
+    } catch (err) {
+      console.log(err);
+    }
 
     return [];
   };
+
   return (
     <View style={styles.container}>
       <NavigationHeader title="New Post" />
@@ -55,11 +86,7 @@ export const GaleryPost: React.FC<IGaleryPostProps> = () => {
         <Spacer width={17.5} />
         <SelectImageIcon color={colors.secondary} />
         <Spacer width={26} />
-        <TouchableOpacity
-          onPress={async () => {
-            const test = await getImages();
-            console.log(test);
-          }}>
+        <TouchableOpacity>
           <CameraImageIcon color={colors.black} />
         </TouchableOpacity>
         <Spacer width={30.5} />
@@ -68,12 +95,44 @@ export const GaleryPost: React.FC<IGaleryPostProps> = () => {
         </TouchableOpacity>
       </View>
       <Spacer height={21} />
+      <FlatGrid
+        onEndReached={() => getImages(pageCursor)}
+        itemDimension={82}
+        data={imageList}
+        renderItem={({item}) => (
+          <Pressable key={item?.node?.image?.uri} style={styles.galery}>
+            <Image
+              source={{uri: item.node.image.uri}}
+              key={item.node.image.uri}
+              style={{
+                width: 82,
+                height: 82,
+              }}
+            />
+          </Pressable>
+        )}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {flex: 1, backgroundColor: colors.white},
+  galery: {
+    borderRadius: 5,
+    backgroundColor: colors.white,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+
+    elevation: 2,
+    width: 82,
+    height: 82,
+  },
 });
 
 export default GaleryPost;
