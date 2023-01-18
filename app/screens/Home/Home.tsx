@@ -9,6 +9,7 @@ import {
   LocationIcon,
   StarIcon,
 } from '@assets/icons';
+import GaleryPost from '@screens/GaleryPost/GaleryPost';
 
 const Tab = createBottomTabNavigator();
 
@@ -37,7 +38,7 @@ export const Home: React.FC<IHomeProps> = () => {
           tabBarIcon: () => <AddIcon color={colors.secondary} />,
         }}
         name="GaleryPost"
-        component={DummyPage}
+        component={GaleryPost}
       />
       <Tab.Screen
         options={{tabBarIcon: ({color}) => <StarIcon color={color} />}}

@@ -12,7 +12,7 @@ import {
   navigationRef,
   useBackButtonHandler,
 } from './NavigationUtilities';
-import {View} from 'react-native';
+import {StatusBar, View} from 'react-native';
 import Welcome from '@screens/Welcome/Welcome';
 import SignIn from '@screens/Auth/SignIn/SignIn';
 import SignUp from '@screens/Auth/SignUp/SignUp';
@@ -113,8 +113,9 @@ export const AppNavigator = (props: NavigationProps) => {
   return (
     <NavigationContainer
       ref={navigationRef}
-      {...props} // Add this to persist screen on DEV
+      {...props} // Add this to persist screen on DEVre
     >
+      <StatusBar backgroundColor={'transparent'} barStyle={'dark-content'} />
       {/* <CrossPlatformStatusBar
         isHidden={
           currentRoute === 'Login' ||

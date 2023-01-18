@@ -26,10 +26,10 @@ const bold: TextStyle = {
 };
 
 const header: TextStyle = {
-  fontWeight: weight.extraBold,
-  fontFamily: type.SpartanThin,
-  fontSize: 28,
-  lineHeight: 31,
+  fontWeight: weight.bold,
+  fontFamily: type.SpartanRegular,
+  fontSize: 18,
+  lineHeight: 20,
   textShadowColor: 'rgba(0, 0, 0, 0.75)',
   textShadowOffset: {height: 4, width: -1},
   color: '#333333',
