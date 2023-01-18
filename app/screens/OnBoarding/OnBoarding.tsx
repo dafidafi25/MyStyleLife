@@ -1,4 +1,5 @@
 import {Spacer, Text} from '@components/atoms';
+import {useBaseNavigation} from '@hooks/useBaseNavigation';
 import {colors} from '@themes/colors';
 import {type} from '@themes/font';
 import React, {useRef} from 'react';
@@ -9,6 +10,7 @@ interface IOnBoardingProps {}
 
 export const OnBoarding: React.FC<IOnBoardingProps> = () => {
   const swiperRef = useRef(null);
+  const navigation = useBaseNavigation();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -72,7 +74,7 @@ export const OnBoarding: React.FC<IOnBoardingProps> = () => {
           onPress={() => {
             const index = swiperRef.current.getActiveIndex();
             if (index === 0) swiperRef.current.goTo(1);
-            else console.log('Go To Main Screen');
+            else navigation.navigate('Home');
           }}>
           <Text
             fontSize={20}
