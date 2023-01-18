@@ -41,6 +41,9 @@ export type NavigatorParamList = {
 
   // Authenticated Screen
   Home: undefined;
+
+  GaleryPost: undefined;
+  Feed: undefined;
 };
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
@@ -142,5 +145,5 @@ export function DummyPage() {
  *
  * `canExit` is used in ./app/app.tsx in the `useBackButtonHandler` hook.
  */
-const exitRoutes = ['Home'];
+const exitRoutes = ['WelcomeScreen'];
 export const canExit = (routeName: string) => exitRoutes.includes(routeName);
