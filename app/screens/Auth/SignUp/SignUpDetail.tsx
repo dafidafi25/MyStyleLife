@@ -10,8 +10,7 @@ import {
 } from '@components/atoms';
 import InputDate from '@components/atoms/Input/InputDate';
 import MySLifeSelectInput from '@components/atoms/MySLifeSelectInput';
-import {BaseNavigationParams} from '@navigators/NavigatorParams';
-import {useNavigation} from '@react-navigation/native';
+import {useBaseNavigation} from '@hooks/useBaseNavigation';
 import {colors} from '@themes/colors';
 import React from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
@@ -20,7 +19,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 interface ISignUpDetailProps {}
 
 export const SignUpDetail: React.FC<ISignUpDetailProps> = () => {
-  const navigation = useNavigation<BaseNavigationParams>();
+  const navigation = useBaseNavigation();
 
   return (
     <SafeAreaView style={styles.container}>

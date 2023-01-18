@@ -31,8 +31,10 @@ export const InputCheckBox: React.FC<IInputCheckBoxProps> = ({
       />
 
       <Spacer />
-      <View style={{flexDirection: 'row', width: '90%'}}>
-        <Text textType="label">{label}</Text>
+      <View style={{flexDirection: 'row', maxWidth: '95%'}}>
+        <Text textType="label" style={{}}>
+          {label}
+        </Text>
       </View>
     </Pressable>
   );

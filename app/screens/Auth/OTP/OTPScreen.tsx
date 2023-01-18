@@ -1,25 +1,18 @@
-import {
-  Button,
-  InputCheckBox,
-  Spacer,
-  Text,
-  InputText,
-} from '@components/atoms';
+import {Button, Spacer, Text} from '@components/atoms';
 import {OTPField} from '@components/atoms/Input/OTPField';
-import {BaseNavigationParams} from '@navigators/NavigatorParams';
-import {useNavigation} from '@react-navigation/native';
+import {useBaseNavigation} from '@hooks/useBaseNavigation';
 import {colors} from '@themes/colors';
 import React, {useState} from 'react';
-import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 interface IOTPScreenProps {}
 
 export const OTPScreen: React.FC<IOTPScreenProps> = () => {
+  const navigation = useBaseNavigation();
+
   const [otpInputValue, setOtpInputValue] = useState('');
-  const [phonError, setPhoneError] = useState<string>('');
   const [otpError, setOtpError] = useState<string>('');
-  const navigation = useNavigation<BaseNavigationParams>();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -63,7 +56,12 @@ export const OTPScreen: React.FC<IOTPScreenProps> = () => {
           Send it again
         </Text>
         <Spacer height={30} />
-        <Button title="Validate" fullWidth variant="secondary" />
+        <Button
+          title="Validate"
+          fullWidth
+          variant="secondary"
+          onPress={() => navigation.navigate('OnBoardingScreen')}
+        />
       </View>
     </SafeAreaView>
   );

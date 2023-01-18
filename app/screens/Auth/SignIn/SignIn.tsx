@@ -31,9 +31,9 @@ export const SignIn: React.FC<ISignInProps> = () => {
         <Spacer height={18} />
         <View
           style={{
-            justifyContent: 'space-between',
             flexDirection: 'row',
             alignItems: 'center',
+            justifyContent: 'space-between',
           }}>
           <InputCheckBox label="Remember Me?" />
           <TouchableOpacity

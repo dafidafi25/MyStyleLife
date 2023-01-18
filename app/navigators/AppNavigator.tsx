@@ -19,6 +19,7 @@ import SignUp from '@screens/Auth/SignUp/SignUp';
 import ForgotPassword from '@screens/Auth/ForgotPassword/ForgotPassword';
 import SignUpDetail from '@screens/Auth/SignUp/SignUpDetail';
 import OTPScreen from '@screens/Auth/OTP/OTPScreen';
+import OnBoarding from '@screens/OnBoarding/OnBoarding';
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -53,7 +54,7 @@ const AppStack = () => {
       <Stack.Screen name="SignUpDetailScreen" component={SignUpDetail} />
       <Stack.Screen name="ForgotPasswordScreen" component={ForgotPassword} />
       <Stack.Screen name="OTPScreen" component={OTPScreen} />
-      <Stack.Screen name="OnBoardingScreen" component={DummyPage} />
+      <Stack.Screen name="OnBoardingScreen" component={OnBoarding} />
     </Fragment>
   );
   //   const AuthenticatedRoute = <Fragment></Fragment>;
@@ -126,7 +127,7 @@ export const AppNavigator = (props: NavigationProps) => {
 
 AppNavigator.displayName = 'AppNavigator';
 
-function DummyPage() {
+export function DummyPage() {
   return <View />;
 }
 
